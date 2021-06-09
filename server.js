@@ -16,7 +16,7 @@ const messages = [
 function getNextId() {
   const lastMessage = messages[messages.length - 1].id;
   const nextId = parseInt(lastMessage) + 1;
-  return nextId.toString();
+  return nextId;
 }
 
 app.get("/", function (request, response) {
