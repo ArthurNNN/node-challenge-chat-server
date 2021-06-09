@@ -27,6 +27,27 @@ app.get("/messages", (req, res) => {
   res.status(201).send(messages);
 });
 
+app.get("/messages/search", (req, res) => {
+  const text = req.query.text;
+  const result = messages.filter(message => message.text.includes(text));
+  if (result.length > 0) {
+    res.status(201).send(result);
+  } else {
+    res.status(404).send("These messages not found");
+  }
+});
+
+app.get("/messages/lastest", (req, res) => {
+  const result = messages.slice(messages.length - 10);
+  console.log(messages.length - 10)
+  console.log(result)
+  if (result.length > 0) {
+    res.status(201).send(result);
+  } else {
+    res.status(404).send("These messages not found");
+  }
+});
+
 app.get("/messages/:id", (req, res) => {
   const messageId = parseInt(req.params.id);
   const message = messages.find((message) => message.id === messageId);
