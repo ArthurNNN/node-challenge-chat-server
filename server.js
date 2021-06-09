@@ -42,7 +42,7 @@ app.post("/messages", (req, res) => {
   const id = getNextId();
   const newMessage = { id: id, from: from, text: text };
   if (from === "" || text === "") {
-    res.status(404).send("This message is not complete.");
+    res.status(400).send("This message is not complete.");
   } else {
     messages.push(newMessage);
     res.status(201).send(newMessage);
