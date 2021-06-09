@@ -61,7 +61,8 @@ app.get("/messages/:id", (req, res) => {
 app.post("/messages", (req, res) => {
   const { from, text } = req.body;
   const id = getNextId();
-  const newMessage = { id: id, from: from, text: text };
+  const timeSent = new Date();
+  const newMessage = { id: id, from: from, text: text, timeSent: timeSent.toLocaleString() };
   if (from === "" || text === "") {
     res.status(400).send("This message is not complete.");
   } else {
