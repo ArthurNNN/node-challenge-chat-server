@@ -66,10 +66,9 @@ app.put("/messages/:id", (req, res) => {
 
 app.delete("/messages/:id", (req, res) => {
   const messageId = parseInt(req.params.id);
-
   const message = messages.find((message) => message.id === messageId);
   if (message) {
-    const index = messages.findIndex((message) => message.messageId == messageId);
+    const index = messages.indexOf(message);
     messages.splice(index, 1);
     res.status(201).send({ success: true });
   } else {
